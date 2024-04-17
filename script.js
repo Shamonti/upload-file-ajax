@@ -1,18 +1,19 @@
-uploadButton = document.getElementById('upload-button');
-fileUpload = document.getElementById('file');
+document.addEventListener('DOMContentLoaded', () => {
+  const uploadButton = document.getElementById('upload-button');
+  const fileUpload = document.getElementById('file');
 
-uploadButton.onclick = function () {
-  let formdata = new FormData();
-  let selectedFile = file.files[0];
-  formdata.append('file', selectedFile);
+  uploadButton.addEventListener('click', () => {
+    const formData = new FormData();
+    const selectedFile = fileUpload.files[0];
 
-  let params = {
-    method: 'POST',
-    headers: {},
-    body: formdata,
-  };
+    formData.append('file', selectedFile);
 
-  fetch('scripts.php', params)
-    .then(response => response.text())
-    .then(data => console.log(data));
-};
+    fetch('./script.php', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.text())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+  });
+});
