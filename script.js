@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
       body: formData,
     })
       .then(response => response.text())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+      // .then(data => console.log(data))
+      .catch(error => console.error(error))
+      .finally(() => {
+        fileUpload.value = null;
+      });
   });
 });
